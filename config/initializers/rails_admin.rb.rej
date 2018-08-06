@@ -1,0 +1,84 @@
+--- config/initializers/rails_admin.rb
++++ config/initializers/rails_admin.rb
+@@ -25,23 +31,74 @@ RailsAdmin.config do |config|
+ 
+   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
+ 
+-  ## == Gravatar integration ==
+-  ## To disable Gravatar integration in Navigation Bar set to false
+-  # config.show_gravatar true
+-
+   config.actions do
+-    dashboard                     # mandatory
+-    index                         # mandatory
++    dashboard                      # mandatory
++    index do                       # mandatory
++      only Ability::INDEX_MODELS
++    end
+     new
+     export
+     bulk_delete
+     show
+     edit
+     delete
+-    show_in_app
++    # show_in_app
+ 
+     ## With an audit adapter, you can add:
+     # history_index
+     # history_show
++
++    ## Customize actions
++    #recover
++  end
++
++  config.compact_show_view = false
++
++  config.model 'Admin' do
++    configure :set_password do
++      label "Password"
++    end
++
++    configure :is_super do
++      label "Super?"
++    end
++
++    list do
++      include_fields :login,
++        :email,
++        :role,
++        :is_super
++    end
++
++    show do
++      include_fields :login,
++        :email,
++        :role,
++        :is_super,
++        :login_count,
++        :failed_login_count,
++        :last_request_at,
++        :current_login_at,
++        :last_login_at,
++        :current_login_ip,
++        :last_login_ip
++    end
++
++    edit do
++      include_fields :login,
++        :email,
++        :set_password,
++        :role
++
++      configure :role do
++        visible do
++          bindings[:view]._current_user.is_super
++        end
++      end
++    end
++  end
++
++  config.model 'Role' do
++    exclude_fields :admins
+   end
+ end

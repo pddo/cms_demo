@@ -1,0 +1,31 @@
+<% content_for :stylesheet do %>
+  <%= stylesheet_link_tag "admin_sessions", media: 'all', 'data-turbolinks-track' => true %>
+<% end %>
+
+<div class="container">
+  <%= form_for @admin_session, :url => admin_session_path, html: {class: "form-signin"} do |f| %>
+    <h2 class="form-signin-heading"><%= RailsAdmin::Config.main_app_name.join(' ') %></h2>
+    <% if @admin_session.errors.any? %>
+      <div class="alert alert-danger">
+        <strong>Error!</strong> <%= t('authen.incorrect_msg') %>
+      </div>
+    <% end %>
+    <% if flash[:notice] %>
+      <% if flash[:notice] == t('authen.logout_msg') %>
+        <% css_class = 'success' %>
+      <% else %>
+        <% css_class = 'warning' %>
+      <% end %>
+      <div class="alert alert-<%= css_class %>">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <%= f.label t("authen.username"), for: 'inputUsername', class: 'sr-only' %>
+    <%= f.text_field :login, class: "form-control", id: 'inputUsername', placeholder: t("authen.username"), required: '', autofocus: '' %>
+    <%= f.label t('authen.password'), for: 'inputPassword', class: 'sr-only' %>
+    <%= f.password_field :password, class: "form-control", id: 'inputPassword', placeholder: t('authen.password'), required: '', autofocus: '' %>
+    <p><%= f.check_box :remember_me %> <%= t('authen.remember_me')%> </p>
+    <%= f.button t('authen.login'), class: "btn btn-lg btn-primary btn-block" %>
+  <% end %>
+</div>
