@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    command: rails server -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+
+  postgres:
+    image: postgres:10-alpine
+    restart: on-failure:5
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pg10data:/var/lib/postgresql/data
+
+volumes:
+  pg10data:
