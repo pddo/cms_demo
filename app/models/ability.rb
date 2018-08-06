@@ -7,6 +7,9 @@ class Ability
     },
     'Role' => {
       :actions => [] #[:read, :create, :update, :destroy]
+    },
+    'User' => {
+      :actions => [:read, :create, :update, :destroy]
     }
     # Sample
     # ,
