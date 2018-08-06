@@ -10,7 +10,7 @@ en:
     not_allowed_acion_msg: "Action is not allowed."
     denied_access_msg: "You are not authorized."
     logout_msg: "You have been logout successfully"
-    login_msg: "YOur have been login successfully"
+    login_msg: "You have been login successfully"
   authlogic:
     error_messages:
       login_blank: can not be blank

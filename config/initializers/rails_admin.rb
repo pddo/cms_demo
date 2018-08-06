@@ -31,17 +31,94 @@ RailsAdmin.config do |config|
 
   config.actions do
     dashboard                     # mandatory
-    index                         # mandatory
+    index do                       # mandatory
+      only Ability::INDEX_MODELS
+    end
     new
     export
     bulk_delete
     show
     edit
     delete
-    show_in_app
+    #show_in_app
 
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+  end
+
+  config.model 'Admin' do
+    configure :set_password do
+      label 'Set Password'
+      help 'Set password'
+    end
+
+    configure :last_request_at do
+      strftime_format do
+        '%Y/%m/%d %H:%M:%S'
+      end
+    end
+    configure :current_login_at do
+      strftime_format do
+        '%Y/%m/%d %H:%M:%S'
+      end
+    end
+    configure :last_login_at do
+      strftime_format do
+        '%Y/%m/%d %H:%M:%S'
+      end
+    end
+
+    list do
+      include_fields :login,
+        :email,
+        :role,
+        :is_super
+    end
+
+    show do
+      include_fields :login,
+        :email,
+        :role,
+        :is_super,
+        :login_count,
+        :failed_login_count,
+        :last_request_at,
+        :current_login_at,
+        :last_login_at,
+        :current_login_ip,
+        :last_login_ip
+    end
+
+    edit do
+      include_fields :login,
+        :email,
+        :set_password,
+        :role
+
+      configure :role do
+        visible do
+          bindings[:view]._current_user.is_super
+        end
+      end
+    end
+  end
+
+  config.model 'Role' do
+    exclude_fields :admins
+
+    list do
+      field :created_at do
+        strftime_format do
+          '%Y/%m/%d %H:%M:%S'
+        end
+      end
+
+      field :updated_at do
+        strftime_format do
+          '%Y/%m/%d %H:%M:%S'
+        end
+      end
+    end
   end
 end

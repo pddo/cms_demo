@@ -3,12 +3,12 @@ default: &default
   encoding: unicode 
   pool: 5 
   timeout: 5000 
-  username: postgres
-  password: postgres
+  username: <%= ENV['DB_PASS'] %>
+  password: <%= ENV['DB_PASS'] %>
   # please see the update below about using hostnames to 
   # access linked services via docker-compose
-  host: demo_postgres_1
-  port: 5432
+  host: <%= ENV['DB_HOST'] %>
+  port: <%= ENV['DB_PORT'] %>
 
 development: 
   <<: *default 

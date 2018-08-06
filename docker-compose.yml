@@ -8,6 +8,11 @@ services:
       - .:/app
     ports:
       - "3000:3000"
+    environment:
+      DB_HOST: cmsdemo_postgres_1
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASS: postgres
 
   postgres:
     image: postgres:10-alpine
