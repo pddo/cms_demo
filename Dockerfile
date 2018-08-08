@@ -35,6 +35,12 @@ ENTRYPOINT ["bundle", "exec"]
 # from the outside.
 EXPOSE 3000
 
+# Setup default environment variables
+ENV DB_HOST=localhost \
+    DB_PORT=5432 \
+    DB_USER=postgres \
+    DB_PASS=postgres
+
 # The main command to run when the container starts. Also 
 # tell the Rails dev server to bind to all interfaces by 
 # default.

@@ -3,7 +3,7 @@ default: &default
   encoding: unicode 
   pool: 5 
   timeout: 5000 
-  username: <%= ENV['DB_PASS'] %>
+  username: <%= ENV['DB_USER'] %>
   password: <%= ENV['DB_PASS'] %>
   # please see the update below about using hostnames to 
   # access linked services via docker-compose
