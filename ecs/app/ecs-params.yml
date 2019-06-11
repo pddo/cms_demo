@@ -1,0 +1,35 @@
+version: 1
+task_definition:
+  task_execution_role: ecsTaskExecutionRole
+  ecs_network_mode: awsvpc
+  task_size:
+    mem_limit: 0.5GB
+    cpu_limit: 256
+run_params:
+  network_configuration:
+    awsvpc_configuration:
+      subnets:
+        - "subnet-0b8fd96e"
+        - "subnet-15a4e762"
+      security_groups:
+        - "sg-0b07c47aebcf1fabc"
+      assign_public_ip: ENABLED
+  service_discovery:
+    # container_name: string
+    # container_port: integer
+    private_dns_namespace:
+        vpc: vpc-cb6f0aae
+        # id: string
+        name: cms-demo
+        # description: string
+    # public_dns_namespace:
+    #     id: string
+    #     name: string
+    service_discovery_service:
+        name: cms-app
+    #     description: string
+    #     dns_config:
+    #       type: string
+    #       ttl: integer
+    #     healthcheck_custom_config:
+    #       failure_threshold: integer

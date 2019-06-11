@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  ssh:
+    image: pddo/cms_demo
+    command: ["/usr/sbin/sshd", "-D"]
+    ports:
+      - "22:22"
+    environment:
+      DB_HOST: pg10-3.cms-demo
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASS: postgres
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: cms_demo
+        awslogs-region: ap-southeast-1
+        awslogs-stream-prefix: ssh

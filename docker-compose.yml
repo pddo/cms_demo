@@ -15,7 +15,20 @@ services:
       DB_USER: postgres
       DB_PASS: postgres
 
-  postgres:
+  ssh:
+    image: pddo/cms_demo
+    command: ["/usr/sbin/sshd", "-D"]
+    volumes:
+      - .:/app
+    ports:
+      - "999:22"
+    environment:
+      DB_HOST: pg10
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASS: postgres
+
+  pg10:
     image: postgres:10-alpine
     restart: on-failure:5
     ports:

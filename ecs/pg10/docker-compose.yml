@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  pg10:
+    image: postgres:10-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: cms_demo
+        awslogs-region: ap-southeast-1
+        awslogs-stream-prefix: pg10
