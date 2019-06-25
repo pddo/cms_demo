@@ -68,3 +68,4 @@ gem 'authlogic'
 
 gem 'sorbet', :group => :development
 gem 'sorbet-runtime'
+gem 'sorbet-rails'
