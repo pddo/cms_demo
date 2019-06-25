@@ -1,4 +1,4 @@
-# typed: false
+# typed: true
 class AdminSessionsController < CmsMainController
   before_action :require_no_admin, :only => [:new, :create]
   before_action :require_admin, :only => :destroy
