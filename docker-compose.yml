@@ -10,7 +10,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DB_HOST: cmsdemo_postgres_1
+      DB_HOST: pg10
       DB_PORT: 5432
       DB_USER: postgres
       DB_PASS: postgres
