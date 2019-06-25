@@ -1,3 +1,4 @@
+# typed: true
 class CreatePermissionsRoles < ActiveRecord::Migration[5.2]
   def change
     create_table :permissions_roles do |t|

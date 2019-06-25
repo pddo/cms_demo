@@ -65,3 +65,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rails_admin'
 gem 'cancancan'
 gem 'authlogic'
+
+gem 'sorbet', :group => :development
+gem 'sorbet-runtime'

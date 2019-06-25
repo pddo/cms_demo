@@ -1,3 +1,4 @@
+# typed: false
 RailsAdmin.config do |config|
   config.main_app_name = ["DemoApp"]
   config.parent_controller = 'CmsMainController'

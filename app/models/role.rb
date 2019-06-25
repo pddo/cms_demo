@@ -1,3 +1,4 @@
+# typed: strict
 class Role < ActiveRecord::Base
   has_many :admins, dependent: :restrict_with_error
   has_and_belongs_to_many :permissions

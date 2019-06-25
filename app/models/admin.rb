@@ -1,3 +1,4 @@
+# typed: false
 class Admin < ActiveRecord::Base
   belongs_to :role
   has_many :permissions, through: :role
